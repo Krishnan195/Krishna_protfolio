@@ -387,21 +387,22 @@
     <script src="script.js"></script>
     <script>
       const jobTitle = document.getElementById('jobTitle');
-      
-      function toggleJobTitle() {
-        // Add moving animation for 5 seconds
+      const titles = ['Data Analyst', 'AI Analyst', 'Data Science Enthusiast'];
+      let idx = 0;
+
+      // Ensure initial title
+      jobTitle.textContent = titles[idx];
+
+      // Every 5 seconds, animate then switch to the next title
+      setInterval(() => {
+        // play animation
         jobTitle.classList.add('job-title-move');
-        
-        // After 5 seconds, change text
+
+        // wait for animation (0.6s) then swap text and remove animation
         setTimeout(() => {
           jobTitle.classList.remove('job-title-move');
-          jobTitle.textContent = jobTitle.textContent === 'Data Analyst' ? 'Data Science Enthusiast' : 'Data Analyst';
-          
-          // Repeat the cycle
-          setTimeout(toggleJobTitle, 100);
-        }, 5000);
-      }
-      
-      // Start the moving cycle
-      toggleJobTitle();
+          idx = (idx + 1) % titles.length;
+          jobTitle.textContent = titles[idx];
+        }, 600);
+      }, 5000);
     </script>
